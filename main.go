@@ -66,6 +66,7 @@ func main() {
 		aesInterfaces = append(aesInterfaces, fmt.Sprintf("%v µs", t6-t5))
 		aesInterfaces = append(aesInterfaces, fmt.Sprintf("%v characters", len(e3)))
 
+
 	}
 
 	t := table.NewWriter()
@@ -85,7 +86,7 @@ func main() {
 
 }
 
-func aesEncrypt(stringToEncrypt []byte, key []byte) (encryptedString string) {
+func aesEncrypt(stringToEncrypt []byte, key []byte) []byte {
 
 
 	plaintext := stringToEncrypt
@@ -105,7 +106,7 @@ func aesEncrypt(stringToEncrypt []byte, key []byte) (encryptedString string) {
 		panic(err.Error())
 	}
 	ciphertext := aesGCM.Seal(nonce, nonce, plaintext, nil)
-	return fmt.Sprintf("%x", ciphertext)
+	return  ciphertext
 }
 
 
